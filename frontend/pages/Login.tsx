@@ -27,7 +27,10 @@ const Login: React.FC<LoginProps> = (props) => {
 
 
     return (
-        <div>Login</div>
+        <div>
+            <div>Login</div>
+            <button onClick={() => signInWithGoogle()} disabled={isAuth}>Login btn</button>
+        </div>
     )
 }
 

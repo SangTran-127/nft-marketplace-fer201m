@@ -13,16 +13,16 @@ const AuthRoute: React.FC<AuthRouteProps> = (props: AuthRouteProps) => {
     const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
-        AuthCheck()
+        const AuthCheck = onAuthStateChanged(auth, (user) => {
+            if (user) setLoading(false);
+            else {
+                console.log('Unauthorize');
+                nav('/login')
+            }
+        })
+        return () => AuthCheck()
     }, [auth]);
-    const AuthCheck = onAuthStateChanged(auth, (user) => {
-        if (user) setLoading(false);
-        else {
-            console.log('Unauthorize');
-            nav('/login')
 
-        }
-    })
     if (loading) return <div>Loading...</div>
     return (
         <>
